@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: casdoor
+  namespace: contestsubmission
+spec:
+  project: contestsubmission
+  source:
+    repoURL: 'https://github.com/ContestSubmission/GitOps'
+    path: casdoor/overlays/prod
+    directory:
+      exclude: '{*.argo.yml}'
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: casdoor

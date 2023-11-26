@@ -1,0 +1,46 @@
+apiVersion: v1
+data:
+  # TODO: configmap generator
+  app.conf: |
+    driverName = postgres
+    dataSourceName = "user=casdoor password=casdoor host=dev-casdoor-postgres port=5432 sslmode=disable dbname=casdoor"
+    dbName =
+    copyrequestbody = true
+kind: ConfigMap
+metadata:
+  name: casdoor-cm
+  namespace: contestsubmission
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: contestsubmission
+  name: casdoor-deployment
+  labels:
+    app: casdoor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: casdoor
+  template:
+    metadata:
+      labels:
+        app: casdoor
+    spec:
+      containers:
+        - name: casdoor-container
+          image: casbin/casdoor:v1.461.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - mountPath: /conf
+              name: conf
+          env:
+            - name: RUNNING_IN_DOCKER
+              value: "true"
+      volumes:
+        - name: conf
+          configMap:
+            name: casdoor-cm
