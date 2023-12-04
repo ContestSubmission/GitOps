@@ -6,3 +6,16 @@ namespace: contestsubmission
 resources:
 - casdoor-service.yml
 - ../../base
+
+patches:
+  - target:
+      kind: PersistentVolumeClaim
+      name: casdoor-postgres-pvc
+    patch: |-
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: casdoor-postgres-pvc
+      spec:
+        # 'standard' isn't available in k3s
+        storageClassName: local-path
