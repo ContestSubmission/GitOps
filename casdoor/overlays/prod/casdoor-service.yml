@@ -22,5 +22,5 @@ spec:
     - kind: Rule
       match: Host(`casdoor.k8s.io`)
       services:
-        - name: casdoo-ui
+        - name: casdoor-ui
           port: 8000
