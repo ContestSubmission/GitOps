@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: casdoor-ui
+  namespace: contestsubmission
+spec:
+  ports:
+  - port: 8000
+    targetPort: 8000
+  selector:
+    app: guestbook-ui
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: casdoor-ui
+  namespace: contestsubmission
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`casdoor.k8s.io`)
+      services:
+        - name: casdoo-ui
+          port: 8000
