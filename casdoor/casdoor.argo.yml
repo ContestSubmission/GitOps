@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: casdoor
-  namespace: contestsubmission
+  namespace: argocd
 spec:
   project: contestsubmission
   source:
