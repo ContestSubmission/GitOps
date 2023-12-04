@@ -7,10 +7,10 @@ spec:
   project: contestsubmission
   source:
     repoURL: 'https://github.com/ContestSubmission/GitOps'
-    path: casdoor/overlays/prod
-    directory:
-      exclude: '{*.argo.yml}'
     targetRevision: HEAD
+    path: casdoor/overlays/prod
+    kustomize:
+      namespace: contestsubmission
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: contestsubmission
