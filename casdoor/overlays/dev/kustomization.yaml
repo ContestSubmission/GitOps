@@ -7,5 +7,3 @@ resources:
 - contestsubmission-namespace.yml
 - casdoor-service.yml
 - ../../base
-
-namePrefix: dev-

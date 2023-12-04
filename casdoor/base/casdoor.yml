@@ -3,7 +3,7 @@ data:
   # TODO: configmap generator
   app.conf: |
     driverName = postgres
-    dataSourceName = "user=casdoor password=casdoor host=dev-casdoor-postgres port=5432 sslmode=disable dbname=casdoor"
+    dataSourceName = "user=casdoor password=casdoor host=casdoor-postgres port=5432 sslmode=disable dbname=casdoor"
     dbName =
     copyrequestbody = true
 kind: ConfigMap
