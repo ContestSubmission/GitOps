@@ -20,7 +20,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`casdoor.k8s.io`)
+      match: Host(`auth.contestsubmission.simulatan.me`)
       services:
         - name: casdoor-ui
           port: 8000
