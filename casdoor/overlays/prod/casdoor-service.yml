@@ -24,3 +24,5 @@ spec:
       services:
         - name: casdoor-ui
           port: 8000
+  tls:
+    secretName: ssl-contestsubmission-simulatan-me
