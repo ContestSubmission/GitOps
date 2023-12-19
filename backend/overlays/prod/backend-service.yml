@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: backend
+  namespace: contestsubmission
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`backend.contestsubmission.simulatan.me`)
+      services:
+        - name: contestsubmission-backend
+          port: 80

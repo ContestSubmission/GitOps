@@ -1,0 +1,95 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: contestsubmission
+  name: postgres-config
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: quarkus
+  POSTGRES_USER: quarkus
+  POSTGRES_HOST: backend-postgres
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  namespace: contestsubmission
+  name: postgres-secret
+  labels:
+    app: postgres
+data:
+  POSTGRES_PASSWORD: YWRtaW4xMjM=
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: backend-postgres-pvc
+  namespace: contestsubmission
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+  storageClassName: standard
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-postgres
+  namespace: contestsubmission
+  labels:
+    app: backend-postgres
+spec:
+  selector:
+    app: backend-postgres
+  ports:
+    - port: 5432
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: contestsubmission
+  name: backend-postgres
+  labels:
+    app: backend-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-postgres
+  template:
+    metadata:
+      labels:
+        app: backend-postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_DB
+                  name: postgres-config
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_USER
+                  name: postgres-config
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_PASSWORD
+                  name: postgres-secret
+          ports:
+            - containerPort: 5432
+              name: postgres
+          volumeMounts:
+            - name: backend-postgres-pvc
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: backend-postgres-pvc
+          persistentVolumeClaim:
+            claimName: backend-postgres-pvc

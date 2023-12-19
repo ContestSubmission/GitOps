@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: contestsubmission
+
+resources:
+- backend-service.yml
+- backend-oidc-secret.local.yml
+- ../../base
+
+patches:
+  - target:
+      kind: PersistentVolumeClaim
+      name: backend-postgres-pvc
+    patch: |-
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: backend-postgres-pvc
+      spec:
+        # 'standard' isn't available in k3s
+        storageClassName: local-path
