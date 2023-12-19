@@ -5,7 +5,6 @@ namespace: contestsubmission
 
 resources:
 - backend-service.yml
-- backend-oidc-secret.local.yml
 - ../../base
 
 patches:
