@@ -4,18 +4,29 @@ kind: Kustomization
 namespace: contestsubmission
 
 resources:
-- backend-service.yml
 - ../../base
+- backend-service.yml
 
 patches:
-  - target:
-      kind: PersistentVolumeClaim
+- patch: |-
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
       name: backend-postgres-pvc
-    patch: |-
-      apiVersion: v1
-      kind: PersistentVolumeClaim
-      metadata:
-        name: backend-postgres-pvc
-      spec:
-        # 'standard' isn't available in k3s
-        storageClassName: local-path
+    spec:
+      # 'standard' isn't available in k3s
+      storageClassName: local-path
+  target:
+    kind: PersistentVolumeClaim
+    name: backend-postgres-pvc
+- patch: |-
+    kind: Job
+    apiVersion: batch/v1
+    metadata:
+      name: contestsubmission-backend-flyway-init
+      # delete succeeded jobs before syncing
+      # required because jobs are immutable
+      labels:
+        "argocd.argoproj.io/hook": PreSync
+        "argocd.argoproj.io/hook-delete-policy": HookSucceeded
+
