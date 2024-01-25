@@ -27,7 +27,7 @@ patches:
       name: contestsubmission-backend-flyway-init
       # delete succeeded jobs before syncing
       # required because jobs are immutable
-      labels:
-        "argocd.argoproj.io/hook": PreSync
-        "argocd.argoproj.io/hook-delete-policy": BeforeHookCreation
+      annotations:
+        argocd.argoproj.io/hook: PreSync
+        argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 
