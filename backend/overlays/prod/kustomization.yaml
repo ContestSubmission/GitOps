@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: contestsubmission
 
 resources:
+- backend-jwt-keys.yml
 - ../../base
 - backend-service.yml
 
