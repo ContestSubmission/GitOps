@@ -5,6 +5,7 @@ namespace: contestsubmission
 
 resources:
 - backend-jwt-keys.yml
+- backend-s3-secret.yml
 - ../../base
 - backend-service.yml
 
