@@ -5,3 +5,8 @@ resources:
 - backend-postgres.yml
 - backend.yml
 
+patches:
+  - path: backend-jwt-secrets-patch.yml
+    target:
+      kind: Deployment
+      labelSelector: app.kubernetes.io/name=contestsubmission-backend
