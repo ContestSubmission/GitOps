@@ -31,4 +31,12 @@ patches:
       annotations:
         argocd.argoproj.io/hook: PreSync
         argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-
+- patch: |-
+    kind: Deployment
+    apiVersion: apps/v1
+    metadata:
+      name: contestsubmission-backend
+      annotations:
+        # for some reason some field seems to be immutable? no clue which one tho
+        # Deployment.apps "contestsubmission-backend" is invalid: spec.selector: Invalid value: v1.LabelSelector{MatchLabels:map[string]string{"app.kubernetes.io/name":"contestsubmission-backend", "app.kubernetes.io/version":""}, MatchExpressions:[]v1.LabelSelectorRequirement(nil)}: field is immutable
+        argocd.argoproj.io/sync-options: Replace=true
