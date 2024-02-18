@@ -6,8 +6,9 @@ namespace: contestsubmission
 resources:
 - backend-jwt-keys.yml
 - backend-s3-secret.yml
-- https://raw.githubusercontent.com/ContestSubmission/KubernetesManifests/2.6.1-125/backend/kubernetes.yml
+- backend-config.yml
 - ../../base
+- https://raw.githubusercontent.com/ContestSubmission/KubernetesManifests/2.7.0/backend/kubernetes.yml
 - backend-service.yml
 
 patches:
