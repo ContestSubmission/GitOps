@@ -8,7 +8,7 @@ resources:
 - backend-s3-secret.yml
 - backend-config.yml
 - ../../base
-- https://raw.githubusercontent.com/ContestSubmission/KubernetesManifests/2.7.1/backend/kubernetes.yml
+- https://raw.githubusercontent.com/ContestSubmission/KubernetesManifests/2.7.2/backend/kubernetes.yml
 - backend-service.yml
 
 patches:
