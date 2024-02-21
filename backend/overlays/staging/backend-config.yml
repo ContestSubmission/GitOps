@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+data:
+  application.properties: |
+    quarkus.http.cors=true
+    quarkus.http.cors.origins=https://staging.contestsubmission.simulatan.me,https://*.contestsubmission.simulatan.me,https://*.contestsubmission.pages.dev
+    websiteUrl=https://invites.contestsubmission.pages.dev
+
