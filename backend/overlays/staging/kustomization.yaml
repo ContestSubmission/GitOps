@@ -9,7 +9,7 @@ resources:
 - backend-oidc-secret.yml
 - backend-config.yml
 - ../../base
-- https://raw.githubusercontent.com/ContestSubmission/KubernetesManifests/2.8.0-invites.1/backend/kubernetes.yml
+- https://raw.githubusercontent.com/ContestSubmission/KubernetesManifests/2.8.0-invites.2/backend/kubernetes.yml
 - backend-ingress.yml
 
 patches:
