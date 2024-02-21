@@ -7,9 +7,10 @@ resources:
 - backend-jwt-keys.yml
 - backend-s3-secret.yml
 - backend-oidc-secret.yml
+- backend-mail-secret.yml
 - backend-config.yml
 - ../../base
-- https://raw.githubusercontent.com/ContestSubmission/KubernetesManifests/2.8.0-invites.2/backend/kubernetes.yml
+- https://raw.githubusercontent.com/ContestSubmission/KubernetesManifests/2.8.0-144/backend/kubernetes.yml
 - backend-ingress.yml
 
 patches:
