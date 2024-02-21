@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: casdoor-container
-          image: casbin/casdoor:v1.461.0
+          image: casbin/casdoor:v1.541.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
