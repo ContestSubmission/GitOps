@@ -11,5 +11,4 @@ spec:
   dnsNames:
     - "contestsubmission.simulatan.me"
     - "*.contestsubmission.simulatan.me"
-    - "staging.contestsubmission.simulatan.me"
     - "*.staging.contestsubmission.simulatan.me"
