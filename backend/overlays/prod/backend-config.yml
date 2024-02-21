@@ -6,4 +6,5 @@ data:
   application.properties: |
     quarkus.http.cors=true
     quarkus.http.cors.origins=https://contestsubmission.simulatan.me
+    websiteUrl=https://contestsubmission.simulatan.me
 
