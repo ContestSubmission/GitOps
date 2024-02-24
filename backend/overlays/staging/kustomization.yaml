@@ -10,7 +10,7 @@ resources:
 - backend-mail-secret.yml
 - backend-config.yml
 - ../../base
-- https://raw.githubusercontent.com/ContestSubmission/KubernetesManifests/2.8.0-144/backend/kubernetes.yml
+- https://raw.githubusercontent.com/ContestSubmission/KubernetesManifests/3.0.0-147/backend/kubernetes.yml
 - backend-ingress.yml
 
 patches:
