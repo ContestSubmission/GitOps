@@ -43,12 +43,3 @@ patches:
   target:
     kind: PersistentVolumeClaim
     name: backend-postgres-pvc
-- patch: |-
-    kind: Job
-    apiVersion: batch/v1
-    metadata:
-      name: contestsubmission-backend-flyway-init
-      # delete succeeded jobs before syncing
-      # required because jobs are immutable
-      annotations:
-        argocd.argoproj.io/sync-options: Replace=true
