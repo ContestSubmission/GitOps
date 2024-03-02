@@ -10,7 +10,7 @@ resources:
 - backend-mail-secret.yml
 - backend-config.yml
 - ../../base
-- https://raw.githubusercontent.com/ContestSubmission/KubernetesManifests/2.8.0/backend/kubernetes.yml
+- https://raw.githubusercontent.com/ContestSubmission/KubernetesManifests/3.0.0/backend/kubernetes.yml
 - backend-service.yml
 
 patches:
@@ -43,22 +43,3 @@ patches:
   target:
     kind: PersistentVolumeClaim
     name: backend-postgres-pvc
-- patch: |-
-    kind: Job
-    apiVersion: batch/v1
-    metadata:
-      name: contestsubmission-backend-flyway-init
-      # delete succeeded jobs before syncing
-      # required because jobs are immutable
-      annotations:
-        argocd.argoproj.io/hook: PreSync
-        argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-- patch: |-
-    kind: Deployment
-    apiVersion: apps/v1
-    metadata:
-      name: contestsubmission-backend
-      annotations:
-        # for some reason some field seems to be immutable? no clue which one tho
-        # Deployment.apps "contestsubmission-backend" is invalid: spec.selector: Invalid value: v1.LabelSelector{MatchLabels:map[string]string{"app.kubernetes.io/name":"contestsubmission-backend", "app.kubernetes.io/version":""}, MatchExpressions:[]v1.LabelSelectorRequirement(nil)}: field is immutable
-        argocd.argoproj.io/sync-options: Replace=true
