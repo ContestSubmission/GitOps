@@ -5,6 +5,6 @@ metadata:
 data:
   application.properties: |
     quarkus.http.cors=true
-    quarkus.http.cors.origins=https://contestsubmission.simulatan.me,https://staging.contestsubmission.simulatan.me
+    quarkus.http.cors.origins=https://contestsubmission.simulatan.me
     websiteUrl=https://contestsubmission.simulatan.me
 
